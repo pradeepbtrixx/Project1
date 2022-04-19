@@ -1,0 +1,48 @@
+<template>
+
+        <lightning-card>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true">
+                  <div class="slds-modal__container">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={handleCancel}>
+                      <svg focusable="false" data-key="close" aria-hidden="true" viewBox="0 0 52 52" class="slds-button__icon slds-		button__icon_large slds-button_icon-inverse">
+                        <g><path d="M31 25.4l13-13.1c.6-.6.6-1.5 0-2.1l-2-2.1c-.6-.6-1.5-.6-2.1 0L26.8 21.2c-.4.4-1 .4-1.4 0L12.3 8c-.6-.6-1.5-.6-2.1 0l-2.1 2.1c-.6.6-.6 1.5 0 2.1l13.1 13.1c.4.4.4 1 0 1.4L8 39.9c-.6.6-.6 1.5 0 2.1l2.1 2.1c.6.6 1.5.6 2.1 0L25.3 31c.4-.4 1-.4 1.4 0l13.1 13.1c.6.6 1.5.6 2.1 0L44 42c.6-.6.6-1.5 0-2.1L31 26.8c-.4-.4-.4-1 0-1.4z"></path></g>
+                      </svg>
+                      <span class="slds-assistive-text">Cancel and close</span>
+                    </button>
+                    
+                    
+                    <div class="slds-modal__header">
+                      <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Case</h1>
+                    </div>
+                    
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+      
+                        <div class="slds-section slds-is-open">
+                          <h3 class="slds-section__title slds-theme_shade">
+                            <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Case Information</span>
+                          </h3>
+
+                          <lightning-record-edit-form object-api-name= {objApi}>
+                            <lightning-messages> </lightning-messages>
+                            <div class="slds-wrap slds-grid">
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p><lightning-input-field field-name="Status" value = {statusVal} onchange={statushand} required="true" > </lightning-input-field></p></div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p><lightning-input-field field-name="Origin" value = {originVal} onchange={originhand} required= "true" > </lightning-input-field></p></div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p><lightning-input-field field-name="Subject" value = {subjectVal} onchange={subjecthand} required ="true"> </lightning-input-field></p></div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p><lightning-input-field field-name="Reason" value = {reasonVal} onchange={reasonhand} required ="true"> </lightning-input-field></p></div>
+                            </div>
+                        </lightning-record-edit-form>  
+                        <lightning-input type="file" onchange={onFileUpload} required name="uploadFile" label="Upload File"></lightning-input>   
+                        </div>
+                    </div>
+
+                    <div class="slds-modal__footer">
+                      <div class="slds-align_absolute-center">  
+                        <lightning-button label="Next" variant="brand" type="submit" onclick={saveCase}></lightning-button>
+                      </div>
+                      </div>    
+                </div>    
+
+                </section>      
+        </lightning-card>
+  
+</template>
