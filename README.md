@@ -15,3 +15,8 @@ Path - Project1/Caseuploadfunct/
 
 ![image](https://user-images.githubusercontent.com/47424216/164059749-bbbd9635-dc3c-4c15-b860-54ce8bf157d7.png)
 
+--------------------------------------------------------------------------
+
+**MultipleRecordActions
+
+![image](https://user-images.githubusercontent.com/47424216/165031053-a1cc473e-63f2-4d69-96be-2c3159aefd66.png)
