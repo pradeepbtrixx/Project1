@@ -1,0 +1,133 @@
+<!--
+- Created by Jay on 6/17/2021.
+- Updated for Hours - by Nteli on Sep 23, 2021
+-->
+
+<!-- Trade In Data Capture Component -->
+<template>
+
+  <div class="slds-grid">
+  <div class="slds-col slds-size_1-of-1">
+  <lightning-combobox label="Type Description" options={typeOptions} value={typeCode} data-elem-id="type" onchange={onInputChange} data-validate required></lightning-combobox>
+
+  </div>
+  </div>
+  <!-- For MAKE BY Mani -->
+  
+  <div class="slds-form-element">
+  <label class="slds-form-element__label" for="combobox-id-2" id="combobox-label-id-32" > Make Description </label>
+  <div class="slds-form-element__control">
+  <div class="slds-combobox_container">
+  <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" onclick={showMakeDropDown} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
+  <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+    
+    
+  <input type="text" class="slds-input slds-combobox__input" id="combobox-id-2" 
+  aria-autocomplete="list" aria-controls="listbox-id-3" aria-expanded="false" 
+  aria-haspopup="listbox"  role="combobox" value={makeLabel}   data-elem-id="make"  
+  oninput={searchMakeValue}  data-validate required placeholder="Search"/>
+  </div>
+  <template if:true={makeOptions}>
+  <div id="listbox-id-3" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox" >
+  
+  <ul class="slds-listbox slds-listbox_vertical" role="presentation" >
+  <template for:each={makeOptions} for:item="option">
+    <template if:true={option.visible}>  
+  <li role="presentation" class="slds-listbox__item" key={option.label} 
+    data-key={option.key} >
+          <div id={option.label} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" 
+          role="option">
+            <span class="slds-media__body">
+              <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                <p data-key={option.value} 
+                data-label={option.label} onclick={handleMakeSelection} >{option.label}</p></span>
+            </span>
+          </div>
+    </li>
+  </template>
+  </template>
+  </ul>  
+  
+  </div>
+  </template> 
+  </div>  
+  </div>
+  </div>
+  </div>
+  
+  <!-- JAY's LOGIC -->
+  
+  <!-- <div class="slds-grid">
+  <div class="slds-col slds-size_1-of-1">
+  <lightning-combobox label="Make Description" options={makeOptions} value={make} data-elem-id="make" onchange={onInputChange} data-validate required></lightning-combobox>
+  </div>
+  </div> -->
+  
+  <!-- For  MODEL By Mani  -->
+  <div class="slds-form-element">
+  <label class="slds-form-element__label" for="combobox-id-1" id="combobox-label-id-33" > Model </label>
+  <div class="slds-form-element__control">
+  <div class="slds-combobox_container">
+  <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" onclick={showModelDropDown} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
+  <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+  <input type="text" class="slds-input slds-combobox__input" id="combobox-id-1" aria-autocomplete="list" aria-controls="listbox-id-1" aria-expanded="false" aria-haspopup="listbox"  role="combobox" value={val} data-elem-id="val" oninput={searchValue}  required placeholder="Search"/>
+  </div>
+  <template if:true={modelOptions}>
+  <div id="listbox-id-4" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox" >
+  
+  <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+  <template for:each={modelOptions} for:item="model">
+  <template if:true={model.visible}>
+    <li role="presentation" class="slds-listbox__item" key={model.label} value={model.value} data-key={model.label}>
+            <div id={model.label} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+              <span class="slds-media__body">
+                <span class="slds-listbox__option-meta slds-listbox__option-meta_entity"><p data-key={model.label} onclick={handleModelSelection} >{model.label}</p></span>
+              </span>
+            </div>
+    </li>
+  </template>
+  </template>
+  </ul>  
+  
+  </div>
+  </template> 
+  </div>  
+  </div>
+  </div>
+  </div>
+
+  
+  <!-- JAY'S LOGIC FOR MODEL
+  <div class="slds-grid">
+    <div class="slds-col slds-size_1-of-1">
+      <lightning-combobox label="Model" options={modelOptions} value={model} data-elem-id="model" onchange={onInputChange} data-validate required></lightning-combobox>
+      <lightning-input-field aria-autocomplete="list" aria-controls="listbox-id-4" aria-expanded="true" aria-haspopup="listbox" role="listbox" field-name="Model__c" value={_model} onchange={searchData}></lightning-input-field>
+    </div>
+  </div>
+   -->
+  <div class="slds-grid">
+  <div class="slds-col slds-size_1-of-1">
+  <lightning-combobox if:false={noYearOptionsAvailable} label="Year" options={yearOptions} value={year} data-elem-id="year" onchange={onInputChange} data-validate required></lightning-combobox>
+  <lightning-input if:true={noYearOptionsAvailable} pattern="((18|19|20|21)\d\d$)" message-when-pattern-mismatch="Invalid input." placeholder="YYYY"  type="text" min-length="4" max-length="4"  label="Year" value={year} data-elem-id="year" onchange={onInputChange} data-validate required></lightning-input>
+  
+  </div>
+  </div>
+  <div class="slds-grid">
+  <div class="slds-col slds-size_1-of-1">
+  <lightning-combobox label="Region" options={regionOptions}  value={region} data-elem-id="region" onchange={onInputChange}  data-validate required></lightning-combobox>
+  </div>
+  </div>
+  <div class="slds-grid">
+  <div class="slds-col slds-size_1-of-1">
+  <lightning-combobox label="State" options={stateOptions} value={state} data-elem-id="state" onchange={onInputChange} data-validate required></lightning-combobox>
+  </div>
+  </div>
+  <div class="slds-grid">
+  <div class="slds-col slds-size_1-of-1">
+  <lightning-input type="number" label="Engine Hours" value={engineHours}  data-elem-id="hours" onchange={onInputChange}>
+  </lightning-input>
+  </div>
+  </div>
+  <lightning-spinner if:true={showSpinner} alternative-text="Fetching updated picklist values"></lightning-spinner>
+  
+  </template>
